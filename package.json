@@ -1,0 +1,41 @@
+{
+  "name": "aws-lambda-graphql",
+  "version": "1.0.0",
+  "description": "aws + lambda + graphql POC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JWebCoder/aws-lambda-graphql.git"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "graphql",
+    "poc"
+  ],
+  "author": "João Moura",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JWebCoder/aws-lambda-graphql/issues"
+  },
+  "homepage": "https://github.com/JWebCoder/aws-lambda-graphql#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "^14.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
+}
