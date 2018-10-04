@@ -6,6 +6,7 @@ const {
 } = GraphQL
 // import the user query file we created
 const PostQuery = require('./queries/Post')
+const ProductQuery = require('./queries/Product')
 const UserQuery = require('./queries/User')
 const UserMutation = require('./mutations/User')
 const CommentMutation = require('./mutations/Comment')
@@ -16,6 +17,7 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     posts: PostQuery.index(),
     users: UserQuery.index(),
+    products: ProductQuery.index(),
   },
 })
 
