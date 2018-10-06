@@ -7,7 +7,7 @@ const {
 // import the Post type we created
 const ProductType = require('../types/Product')
 // import the Post resolver we created
-const ProductResolver = require(`../resolvers/${process.env.TARGET}/Product`)
+const ProductResolver = require(`../../resolvers/${process.env.TARGET}/Product`)
 module.exports = {
   index () {
     return {

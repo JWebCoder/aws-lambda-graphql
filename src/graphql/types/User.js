@@ -1,16 +1,17 @@
 'use strict'
-const GraphQL = require('graphql')
-const Comment = require('./Comment')
-const {
+import CommentType from './Comment'
+import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
   GraphQLList,
-} = GraphQL
+} from 'graphql'
+import CommentResolver from 'resolvers/Comment'
+
 const UserType = new GraphQLObjectType({
-  name: 'user',
+  name: 'User',
   description: 'User Type, For all the users present in fakeDB.',
-  fields: {
+  fields: () => ({
     id: {
       type: GraphQLID,
       description: 'ID of the user',
@@ -20,9 +21,13 @@ const UserType = new GraphQLObjectType({
       description: 'Name of the user',
     },
     comments: {
-      type: new GraphQLList(Comment),
+      type: new GraphQLList(CommentType),
       description: 'User comments',
+      resolve (parent, args, context, info) {
+        return CommentResolver.index({ userId: parent.id })
+      },
     },
-  },
+  }),
 })
-module.exports = UserType
+
+export default UserType

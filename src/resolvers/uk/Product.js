@@ -1,5 +1,5 @@
 'use strict'
-let japan = require('../../../uk')
+let japan = require('japan')
 const ProductController = {
   index (args) {
     return japan.products.map(

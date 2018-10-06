@@ -1,8 +1,13 @@
 'use strict'
-let fakeDB = require('../../fakedb')
+let fakeDB = require('fakedb')
 const CommentsController = {
   index (args) {
     const comments = fakeDB.comments
+    if (args.userId) {
+      return fakeDB.comments.filter(
+        comment => comment.userId === args.userId
+      )
+    }
     return comments
   },
   push (args) {
@@ -15,4 +20,4 @@ const CommentsController = {
     return newComment
   },
 }
-module.exports = CommentsController
+export default CommentsController

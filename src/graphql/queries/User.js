@@ -1,12 +1,12 @@
 'use strict'
-const GraphQL = require('graphql')
-const {
+import UserType from 'graphql/types/User'
+import {
   GraphQLList,
-} = GraphQL
+} from 'graphql'
 // import the Post type we created
-const UserType = require('../types/User')
+
 // import the Post resolver we created
-const UserResolver = require('../resolvers/User')
+const UserResolver = require(`../../resolvers/${process.env.TARGET}/User`)
 module.exports = {
   index () {
     return {

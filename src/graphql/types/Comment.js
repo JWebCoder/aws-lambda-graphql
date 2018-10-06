@@ -1,26 +1,32 @@
 'use strict'
-const GraphQL = require('graphql')
-const {
+import UserType from 'graphql/types/User'
+import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
-} = GraphQL
+} from 'graphql'
+const UserResolver = require(`../../resolvers/${process.env.TARGET}/User`)
+
 const CommentType = new GraphQLObjectType({
-  name: 'comment',
+  name: 'Comment',
   description: 'Comment Type',
-  fields: {
+  fields: () => ({
     id: {
       type: GraphQLID,
       description: 'ID of the comment',
     },
-    userId: {
-      type: GraphQLID,
-      description: 'ID of the user',
+    user: {
+      type: UserType,
+      description: 'Owner',
+      resolve (parent, args, context, info) {
+        return UserResolver.index({ id: parent.userId })
+      },
     },
     message: {
       type: GraphQLString,
       description: 'Comment message',
     },
-  },
+  }),
 })
-module.exports = CommentType
+
+export default CommentType

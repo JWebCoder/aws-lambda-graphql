@@ -1,13 +1,10 @@
 'use strict'
-const GraphQL = require('graphql')
-const {
+import CommentType from 'graphql/types/Comment'
+import {
   GraphQLID,
   GraphQLString,
-} = GraphQL
-// import the Post type we created
-const CommentType = require('../types/Comment')
-// import the Post resolver we created
-const CommentResolver = require('../resolvers/Comment')
+} from 'graphql'
+const CommentResolver = require('resolvers/Comment')
 module.exports = {
   index () {
     return {

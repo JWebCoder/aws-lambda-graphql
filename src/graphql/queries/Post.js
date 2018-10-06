@@ -7,7 +7,7 @@ const {
 // import the Post type we created
 const PostType = require('../types/Post')
 // import the Post resolver we created
-const PostResolver = require('../resolvers/Post')
+const PostResolver = require('resolvers/Post')
 module.exports = {
   index () {
     return {
