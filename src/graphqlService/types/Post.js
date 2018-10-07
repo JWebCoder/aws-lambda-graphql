@@ -4,7 +4,11 @@ import {
   GraphQLID,
   GraphQLInt,
 } from 'graphql'
+import Debug from 'debug'
 
+const debug = Debug('poc:graphql-type-post')
+
+debug('Creating')
 const PostType = new GraphQLObjectType({
   name: 'Post',
   description: 'Post Type, For all the posts present in Reddit.',
@@ -39,5 +43,6 @@ const PostType = new GraphQLObjectType({
     },
   },
 })
+debug('Created')
 
 export default PostType

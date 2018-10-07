@@ -5,8 +5,11 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
 } from 'graphql'
-
 import CreateComment from './mutations/CreateComment'
+import Debug from 'debug'
+
+const debug = Debug('poc:graphql-schema')
+debug('Creating')
 // lets define our root query
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -25,6 +28,7 @@ const RootMutation = new GraphQLObjectType({
   },
 })
 // export the schema
+debug('Created')
 export default new GraphQLSchema({
   query: RootQuery,
   mutation: RootMutation,

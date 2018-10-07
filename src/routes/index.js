@@ -1,15 +1,18 @@
 import { Router } from 'express'
 import { auth, logout, isAuth } from 'middleware/auth'
 import { sendJson } from 'middleware/response'
+import serverController from 'controllers/server'
+import GraphQLSchema from 'graphqlService/schema'
+import graphqlHTTP from 'express-graphql'
 import Debug from 'debug'
 
-const debug = Debug('holiday-payments-server:routing')
+const debug = Debug('poc:routing')
 
 const router = Router()
 
 /** A module generates all the express Routes. */
 export default function () {
-  debug('start')
+  debug('Creating')
   // GET renders home page
   router.get('/', function (req, res) {
     res.render('index', { title: 'Express' })
@@ -28,6 +31,21 @@ export default function () {
     sendJson()
   )
 
-  debug('end')
+  router.get('/version',
+    (req, res, next) => {
+      serverController.version(req, res, next)
+    },
+    sendJson('version')
+  )
+
+  router.use(
+    '/graphQL',
+    graphqlHTTP({
+      graphiql: true,
+      schema: GraphQLSchema,
+    })
+  )
+
+  debug('Created')
   return router
 };

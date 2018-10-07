@@ -7,7 +7,11 @@ import {
   GraphQLList,
 } from 'graphql'
 import Productimage from 'graphqlService/types/ProductImage'
+import Debug from 'debug'
 
+const debug = Debug('poc:graphql-type-product')
+
+debug('Creating')
 const ProductType = new GraphQLObjectType({
   name: 'Product',
   description: 'Post Type, For all the posts present in Reddit.',
@@ -34,5 +38,6 @@ const ProductType = new GraphQLObjectType({
     },
   }),
 })
+debug('Created')
 
 export default ProductType

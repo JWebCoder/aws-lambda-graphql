@@ -3,7 +3,11 @@
 import UserType from 'graphqlService/types/User'
 import { GraphQLString } from 'graphql'
 import UserResolver from 'graphqlService/resolvers/User'
+import Debug from 'debug'
 
+const debug = Debug('poc:graphql-mutation-create-user')
+
+debug('Creating')
 export default {
   type: UserType,
   description: 'This will create a new user.',
@@ -17,3 +21,4 @@ export default {
     return UserResolver.push(args)
   },
 }
+debug('Created')

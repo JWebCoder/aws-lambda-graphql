@@ -1,39 +1,57 @@
-import GraphQLSchema from 'graphqlService/schema'
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import graphqlHTTP from 'express-graphql'
 import logging from 'middleware/logging'
 import routes from 'routes'
 import cookieParser from 'cookie-parser'
 import session from 'express-session'
 import { initStrategies } from 'passportStrategies'
-// let's import the schema file we just created
-const app = express()
-app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }))
-app.use(cookieParser())
-app.use(bodyParser.json({ limit: '50mb' }))
-const passport = initStrategies()
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(cors())
-app.use(logging)
-app.use('/', routes())
-app.use(
-  '/graphQL',
-  graphqlHTTP({
-    graphiql: true,
-    schema: GraphQLSchema,
-  })
-)
-app.use(
-  (err, req, res, next) => {
-    console.log(err)
-    res.status(err.status || 500)
+import Debug from 'debug'
 
-    res.json({
-      message: err.message,
-    })
+const debug = Debug('poc:application setup')
+
+class App {
+  constructor () {
+    debug('Started')
+    this.server = express()
+
+    this.setupRequestParsers()
+    this.setupSession()
+    this.setupPassport()
+
+    this.server.use(cors())
+    this.server.use(logging)
+
+    this.setupRouting()
+    debug('Finished')
   }
-)
-export default app
+
+  setupRequestParsers () {
+    this.server.use(cookieParser())
+    this.server.use(bodyParser.json({ limit: '50mb' }))
+  }
+
+  setupSession () {
+    this.server.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }))
+  }
+
+  setupPassport () {
+    const passport = initStrategies()
+    this.server.use(passport.initialize())
+    this.server.use(passport.session())
+  }
+
+  setupRouting () {
+    this.server.use('/', routes())
+    this.server.use(
+      (err, req, res, next) => {
+        res.status(err.status || 500)
+        res.json({
+          message: err.message,
+        })
+      }
+    )
+  }
+}
+
+export default App

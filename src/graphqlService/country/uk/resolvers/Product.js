@@ -1,5 +1,8 @@
-'use strict'
 import db from 'dataSources/uk'
+import Debug from 'debug'
+
+const debug = Debug('poc:graphql-resolver-product')
+debug('Creating UK')
 const ProductController = {
   index (args) {
     return db.products.map(

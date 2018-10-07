@@ -5,7 +5,11 @@ import {
   GraphQLID,
 } from 'graphql'
 import ProductType from 'graphqlService/types/Product'
+import Debug from 'debug'
 
+const debug = Debug('poc:graphql-type-product-image')
+
+debug('Creating')
 const ProductImage = new GraphQLObjectType({
   name: 'ProductImage',
   description: 'Comment Type',
@@ -32,5 +36,6 @@ const ProductImage = new GraphQLObjectType({
     },
   }),
 })
+debug('Created')
 
 export default ProductImage

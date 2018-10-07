@@ -1,7 +1,14 @@
 'use strict'
 import fakeDB from 'dataSources/fakedb'
+import Debug from 'debug'
 
-const CommentsController = {
+const debug = Debug('poc:graphql-resolver-comment')
+
+class CommentsController {
+  constructor () {
+    debug('Created')
+  }
+
   index (args) {
     const comments = fakeDB.comments
     if (args.userId) {
@@ -10,7 +17,8 @@ const CommentsController = {
       )
     }
     return comments
-  },
+  }
+
   push (args) {
     const newComment = {
       id: Date.now(),
@@ -19,6 +27,9 @@ const CommentsController = {
     }
     fakeDB.comments.push(newComment)
     return newComment
-  },
+  }
 }
-export default CommentsController
+
+const commentsController = new CommentsController()
+
+export default commentsController

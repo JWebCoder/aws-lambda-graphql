@@ -6,7 +6,11 @@ import {
 } from 'graphql'
 import CommentType from './Comment'
 import CommentResolver from 'graphqlService/resolvers/Comment'
+import Debug from 'debug'
 
+const debug = Debug('poc:graphql-type-user')
+
+debug('Creating')
 const UserType = new GraphQLObjectType({
   name: 'User',
   description: 'User Type, For all the users present in fakeDB.',
@@ -28,5 +32,6 @@ const UserType = new GraphQLObjectType({
     },
   }),
 })
+debug('Created')
 
 export default UserType

@@ -1,11 +1,15 @@
 'use strict'
-import PostType from 'graphqlService/types/Post'
-import PostResolver from 'graphqlService/resolvers/Post'
+import { PostType } from 'graphqlService/types'
+import { PostResolver } from 'graphqlService/resolvers'
 import {
   GraphQLList,
   GraphQLString,
 } from 'graphql'
+import Debug from 'debug'
 
+const debug = Debug('poc:graphql-query-post')
+
+debug('Creating')
 export default {
   type: new GraphQLList(PostType),
   description: 'This will return all the posts we find in the given subreddit.',
@@ -19,3 +23,4 @@ export default {
     return PostResolver.index(args, context)
   },
 }
+debug('Created')

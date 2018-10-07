@@ -1,7 +1,14 @@
-'use strict'
-const axios = require('axios')
-const PostsController = {
-  index: (args) => {
+import axios from 'axios'
+import Debug from 'debug'
+
+const debug = Debug('poc:graphql-resolver-post')
+
+class PostsController {
+  constructor () {
+    debug('Created')
+  }
+
+  index (args) {
     const URL = `https://www.reddit.com/r/${args.subreddit || 'javascript'}.json`
     return axios.get(URL).then(
       (response) => {
@@ -14,6 +21,9 @@ const PostsController = {
       .catch((error) => {
         return { error }
       })
-  },
+  }
 }
-export default PostsController
+
+const postsController = new PostsController()
+
+export default postsController

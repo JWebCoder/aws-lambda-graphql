@@ -5,7 +5,11 @@ import {
 } from 'graphql'
 import UserResolver from 'graphqlService/resolvers/User'
 import UserType from 'graphqlService/types/User'
+import Debug from 'debug'
 
+const debug = Debug('poc:graphql-type-comment')
+
+debug('Creating')
 const CommentType = new GraphQLObjectType({
   name: 'Comment',
   description: 'Comment Type',
@@ -27,5 +31,6 @@ const CommentType = new GraphQLObjectType({
     },
   }),
 })
+debug('Created')
 
 export default CommentType

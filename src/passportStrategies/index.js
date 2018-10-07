@@ -3,10 +3,10 @@ import { Strategy as LocalStrategy } from 'passport-local'
 import db from 'dataSources/fakedb'
 import Debug from 'debug'
 
-const debug = Debug('holiday-payments-server:passport')
+const debug = Debug('poc:passport-strategies')
 
 export function initStrategies () {
-  debug('start')
+  debug('Creating')
   passport.use(new LocalStrategy(
     {
       usernameField: 'userId',
@@ -22,7 +22,6 @@ export function initStrategies () {
         cb(null, false)
         return
       }
-      console.log(`user found: ${user.id}`)
 
       cb(null, {
         id: user.id,
@@ -52,6 +51,6 @@ export function initStrategies () {
       })
     }
   )
-  debug('end')
+  debug('Created')
   return passport
 }

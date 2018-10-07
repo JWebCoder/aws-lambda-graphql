@@ -1,5 +1,8 @@
-'use strict'
 import fakeDB from 'dataSources/fakedb'
+import Debug from 'debug'
+
+const debug = Debug('poc:graphql-resolver-user')
+debug('Creating JAPAN')
 const UsersController = {
   index ({ id }, request) {
     console.log('IP address:', request.ip)

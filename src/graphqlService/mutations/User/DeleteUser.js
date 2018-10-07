@@ -1,7 +1,11 @@
 'use strict'
 import { GraphQLNonNull, GraphQLID, GraphQLBoolean } from 'graphql'
 import UserResolver from 'graphqlService/resolvers/User'
+import Debug from 'debug'
 
+const debug = Debug('poc:graphql-mutation-delete-user')
+
+debug('Creating')
 export default {
   type: GraphQLBoolean,
   description: 'This will delete a user.',
@@ -15,3 +19,4 @@ export default {
     return UserResolver.delete(args)
   },
 }
+debug('Created')

@@ -5,7 +5,11 @@ import {
   GraphQLID,
   GraphQLString,
 } from 'graphql'
+import Debug from 'debug'
 
+const debug = Debug('poc:graphql-mutation-create-comment')
+
+debug('Creating')
 export default {
   type: CommentType,
   description: 'This will create a new comment.',
@@ -23,3 +27,4 @@ export default {
     return CommentResolver.push(args)
   },
 }
+debug('Created')
