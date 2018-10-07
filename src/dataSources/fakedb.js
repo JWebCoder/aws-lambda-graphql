@@ -1,5 +1,11 @@
 let fakeDb = {
-  users: [],
+  users: [
+    {
+      id: '1234',
+      password: '1234',
+      name: 'João Moura',
+    },
+  ],
   comments: [],
 }
-module.exports = fakeDb
+export default fakeDb

@@ -1,11 +1,10 @@
-'use strict'
-const GraphQL = require('graphql')
-const {
+import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
   GraphQLInt,
-} = GraphQL
+} from 'graphql'
+
 const PostType = new GraphQLObjectType({
   name: 'Post',
   description: 'Post Type, For all the posts present in Reddit.',

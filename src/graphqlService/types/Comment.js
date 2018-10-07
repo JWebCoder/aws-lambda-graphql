@@ -1,11 +1,10 @@
-'use strict'
-import UserType from 'graphqlService/types/User'
 import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
 } from 'graphql'
 import UserResolver from 'graphqlService/resolvers/User'
+import UserType from 'graphqlService/types/User'
 
 const CommentType = new GraphQLObjectType({
   name: 'Comment',

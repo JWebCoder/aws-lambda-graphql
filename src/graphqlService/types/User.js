@@ -1,11 +1,10 @@
-'use strict'
-import CommentType from './Comment'
 import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
   GraphQLList,
 } from 'graphql'
+import CommentType from './Comment'
 import CommentResolver from 'graphqlService/resolvers/Comment'
 
 const UserType = new GraphQLObjectType({
