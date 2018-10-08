@@ -5,6 +5,7 @@ import {
   GraphQLID,
 } from 'graphql'
 import ProductType from 'graphqlService/types/Product'
+import { ProductResolver } from 'graphqlService/resolvers'
 import Debug from 'debug'
 
 const debug = Debug('poc:graphql-type-product-image')
@@ -14,9 +15,9 @@ const ProductImage = new GraphQLObjectType({
   name: 'ProductImage',
   description: 'Comment Type',
   fields: () => ({
-    id: {
+    productId: {
       type: GraphQLID,
-      description: 'ID of the comment',
+      description: 'ID of the product',
     },
     small: {
       type: GraphQLString,
@@ -33,6 +34,9 @@ const ProductImage = new GraphQLObjectType({
     product: {
       type: ProductType,
       description: 'Product item',
+      resolve (parent, args, context, info) {
+        return ProductResolver.index({ id: parent.productId }, context)
+      },
     },
   }),
 })

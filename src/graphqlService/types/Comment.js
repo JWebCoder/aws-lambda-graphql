@@ -3,8 +3,8 @@ import {
   GraphQLString,
   GraphQLID,
 } from 'graphql'
-import UserResolver from 'graphqlService/resolvers/User'
-import UserType from 'graphqlService/types/User'
+import { UserResolver } from 'graphqlService/resolvers'
+import { UserType } from 'graphqlService/types'
 import Debug from 'debug'
 
 const debug = Debug('poc:graphql-type-comment')
