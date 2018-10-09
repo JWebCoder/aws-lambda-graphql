@@ -20,7 +20,7 @@ export default {
     },
   },
   resolve (parent, args, context, info) {
-    return CommentResolver.index({ userId: parent.id }, context)
+    return CommentResolver.index(args)
   },
 }
 debug('Created')

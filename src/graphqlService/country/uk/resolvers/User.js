@@ -4,7 +4,7 @@ import Debug from 'debug'
 const debug = Debug('poc:graphql-resolver-user')
 debug('Creating UK')
 const UsersController = {
-  index ({ id }, request) {
+  index ({ id }, { request }) {
     console.log('IP address:', request.ip)
     let users = fakeDB.users
 
@@ -23,20 +23,26 @@ const UsersController = {
     fakeDB.users.push(newUser)
     return newUser
   },
-  update ({ id, name }) {
-    let foundUser = {}
-    fakeDB.users = fakeDB.users.map(
-      user => {
-        if (user.id === id) {
-          user.name = name
-          foundUser = {
-            ...user,
+  update ({ name }, { req }) {
+    if (req.isAuthenticated()) {
+      let foundUser = {}
+      fakeDB.users = fakeDB.users.map(
+        user => {
+          if (user.id === req.user.id) {
+            user.name = name
+            foundUser = {
+              ...user,
+            }
           }
+          return user
         }
-        return user
-      }
-    )
-    return foundUser
+      )
+      return foundUser
+    } else {
+      const error = new Error('Authentication required')
+      error.status = 403
+      throw error
+    }
   },
 
   delete ({ id }) {

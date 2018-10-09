@@ -40,10 +40,21 @@ export default function () {
 
   router.use(
     '/graphQL',
-    graphqlHTTP({
-      graphiql: true,
-      schema: GraphQLSchema,
-    })
+    (req, res) => {
+      return graphqlHTTP({
+        graphiql: true,
+        schema: GraphQLSchema,
+        formatError (err) {
+          return {
+            message: err.message,
+            locations: err.locations,
+            path: err.path,
+            status: err.originalError && err.originalError.status,
+          }
+        },
+        context: { req, res },
+      })(req, res)
+    }
   )
 
   debug('Created')
