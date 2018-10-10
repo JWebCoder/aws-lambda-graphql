@@ -3,9 +3,25 @@ const data = {
     {
       id: 1,
       productName: 'IQOS Purple',
-      images: [
-        'http://iqos.jp/big.png',
-        'http://iqos.jp/big2.png',
+      colors: [
+        {
+          id: 1,
+          hex: '#123123',
+          description: 'cool color',
+          images: [
+            'http://iqos.jp/11.png',
+            'http://iqos.jp/11big.png',
+          ],
+        },
+        {
+          id: 2,
+          hex: '#321321',
+          description: 'bad color',
+          images: [
+            'http://iqos.jp/12.png',
+            'http://iqos.jp/12big.png',
+          ],
+        },
       ],
       price: 100,
       currency: '$',
@@ -13,9 +29,25 @@ const data = {
     {
       id: 2,
       productName: 'IQOS Purple',
-      images: [
-        'http://iqos.jp/big.png',
-        'http://iqos.jp/big2.png',
+      colors: [
+        {
+          id: 3,
+          hex: '#123123',
+          description: 'cool color',
+          images: [
+            'http://iqos.jp/23.png',
+            'http://iqos.jp/23big.png',
+          ],
+        },
+        {
+          id: 4,
+          hex: '#321321',
+          description: 'bad color',
+          images: [
+            'http://iqos.jp/24.png',
+            'http://iqos.jp/24big.png',
+          ],
+        },
       ],
       price: 100,
       currency: '$',

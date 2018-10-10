@@ -6,7 +6,8 @@ import {
   GraphQLInt,
   GraphQLList,
 } from 'graphql'
-import Productimage from 'graphqlService/types/ProductImage'
+import { ProductColorType } from 'graphqlService/types'
+import { ProductColorResolver } from 'graphqlService/resolvers'
 import Debug from 'debug'
 
 const debug = Debug('poc:graphql-type-product')
@@ -32,8 +33,8 @@ const ProductType = new GraphQLObjectType({
       type: GraphQLInt,
       description: 'Name of the Author who created this post',
     },
-    images: {
-      type: new GraphQLList(Productimage),
+    colors: {
+      type: new GraphQLList(ProductColorType),
       description: 'Total number of Upvotes received for this post',
     },
   }),

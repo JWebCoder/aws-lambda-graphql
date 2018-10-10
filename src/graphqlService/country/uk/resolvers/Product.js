@@ -4,25 +4,27 @@ import Debug from 'debug'
 const debug = Debug('poc:graphql-resolver-product')
 debug('Creating UK')
 const ProductController = {
-  index ({ id }) {
+  index ({ productId }) {
     let result = db.products.map(
       product => {
-        if (id) {
-          if (product.id === id) {
+        if (productId) {
+          if (product.id === productId) {
             return {
               id: product.id,
               name: product.productName,
-              images: product.images.map(
-                image => ({
-                  productId: product.id,
-                  small: image,
-                  medium: image,
-                  big: image,
-                })
-              ),
               description: product.description || '',
               price: product.price,
               currency: product.currency,
+              colors: product.colors.map(
+                color => {
+                  return {
+                    productId: product.id,
+                    id: color.id,
+                    color: color.hex,
+                    description: color.description,
+                  }
+                }
+              ),
             }
           }
           return null
@@ -30,23 +32,25 @@ const ProductController = {
           return {
             id: product.id,
             name: product.productName,
-            images: product.images.map(
-              image => ({
-                productId: product.id,
-                small: image,
-                medium: image,
-                big: image,
-              })
-            ),
             description: product.description || '',
             price: product.price,
             currency: product.currency,
+            colors: product.colors.map(
+              color => {
+                return {
+                  productId: product.id,
+                  id: color.id,
+                  color: color.hex,
+                  description: color.description,
+                }
+              }
+            ),
           }
         }
       }
     ).filter(e => e)
 
-    if (id && result.length) {
+    if (productId && result.length) {
       result = result[0]
     }
     return result
