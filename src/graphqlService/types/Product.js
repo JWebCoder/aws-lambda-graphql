@@ -7,7 +7,7 @@ import {
   GraphQLList,
 } from 'graphql'
 import { ProductColorType } from 'graphqlService/types'
-import { ProductColorResolver } from 'graphqlService/resolvers'
+// import { ProductColorResolver } from 'graphqlService/resolvers'
 import Debug from 'debug'
 
 const debug = Debug('poc:graphql-type-product')
